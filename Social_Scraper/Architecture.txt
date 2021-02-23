@@ -1,0 +1,42 @@
+NETWORK
+  NODE -> (link) -> NODE
+  TYPE = Reddit
+    USER -> (link[where, importance=score]) -> POST,COMMENT
+    SUBREDDIT = jokes
+      JOKEPOST(POST)[author, setup, punchline, score]
+        AUTHOR = NODE(identifier=author)
+        POST = NODE(identifier=post.id)
+        link = EDGE(AUTHOR, POST, importance=score, type=POST)
+
+        SETUP = [Sentence()]
+        PUNCHLINE = [Sentence()]
+
+        '''
+            Sentence has some meaning, structure
+
+            The relationship between SETUP and PUNCHLINE
+              (in the format expectation:violation)
+            is what generates humor, and is reflected in the POST's score
+        '''
+
+  TYPE = voat
+    ? -> (link) -> ? -> *
+
+  TYPE = twitter
+    ? -> (link) -> ? -> *
+
+
+
+=========
+-------
+LINK TABLE:
+  <reddit_user_1> : <post_id_1> : <importance>
+  <reddit_user_1> : <post_id_2> : <importance>
+  <reddit_user_2> : <post_id_3> : <importance>
+  <reddit_user_1> : <post_id_4> : <importance>
+
+REDDIT USER TABLE:
+  <PK=username> : <post_karma> : <comment_karma> : <bio>
+
+VOAT USER TABLE:
+  <PK=username> : <*args>

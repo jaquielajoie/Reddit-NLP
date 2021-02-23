@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div class='content-section'>
+    <p>
+      Use this form to scrape reddit.com. 
+    </p>
+    <form method='post'
+      action=''>
+        {{ form.hidden_tag() }}
+        <fieldset class='form-group'>
+          <legend class='border-bottom mb-4'>Search Reddit</legend>
+          <div class='form-group'>
+            {{ form.subreddit.label(class='form-control-label') }}
+            {{ form.subreddit(class='form-control form-control-lg') }}
+          </div>
+          <div class='form-group'>
+            {{ form.number_of_posts.label(class='form-control-label') }}
+            {{ form.number_of_posts(class='form-control form-control-lg') }}
+          </div>
+          <div class='form-group'>
+            {{ form.comments_per_post.label(class='form-control-label') }}
+            {{ form.comments_per_post(class='form-control form-control-lg') }}
+          </div>
+          <div class='form-group'>
+            {{ form.save_to_db.label(class='form-control-label') }}
+            {{ form.save_to_db(class='form-control form-control-lg') }}
+          </div>
+          <div class='form-group'>
+            {{ form.submit(class='btn btn-outline-info') }}
+          </div>
+        </fieldset>
+      </form>
+  </div>
+{% endblock body%}
